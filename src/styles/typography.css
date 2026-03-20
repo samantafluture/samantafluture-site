@@ -3,7 +3,7 @@
    ============================================================ */
 
 /* ---------- Google Fonts ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+/* Loaded via <link> in BaseLayout.astro to avoid render-blocking @import */
 
 /* ---------- Font stacks ---------- */
 :root {
@@ -114,7 +114,7 @@ h3 {
   padding-left: var(--space-lg);
   margin: 1.5em 0;
   font-style: italic;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .prose code {

@@ -16,24 +16,24 @@ const { activeTab = 'about' } = Astro.props;
       <span class="title-bar__dot title-bar__dot--yellow"></span>
       <span class="title-bar__dot title-bar__dot--green"></span>
     </div>
-    <a href="#about" class="title-bar__title">samantafluture.com</a>
+    <a href="/#about" class="title-bar__title">samantafluture.com</a>
     <ThemeToggle />
   </div>
 
   <nav class="tab-bar" aria-label="Main navigation">
-    <a href="#about" class={`tab ${activeTab === 'about' ? 'is-active' : ''}`}>
+    <a href="/#about" class={`tab ${activeTab === 'about' ? 'is-active' : ''}`}>
       <PenTool size={14} />
       about
     </a>
-    <a href="#stream" class={`tab ${activeTab === 'stream' ? 'is-active' : ''}`}>
+    <a href="/#stream" class={`tab ${activeTab === 'stream' ? 'is-active' : ''}`}>
       <Zap size={14} />
       stream
     </a>
-    <a href="#projects" class={`tab ${activeTab === 'projects' ? 'is-active' : ''}`}>
+    <a href="/#projects" class={`tab ${activeTab === 'projects' ? 'is-active' : ''}`}>
       <FolderOpen size={14} />
       projects
     </a>
-    <a href="#subscribe" class={`tab ${activeTab === 'subscribe' ? 'is-active' : ''}`}>
+    <a href="/#subscribe" class={`tab ${activeTab === 'subscribe' ? 'is-active' : ''}`}>
       <Mail size={14} />
       subscribe
     </a>
@@ -51,7 +51,7 @@ const { activeTab = 'about' } = Astro.props;
           const id = entry.target.id;
           tabs.forEach((tab) => {
             const href = tab.getAttribute('href');
-            tab.classList.toggle('is-active', href === `#${id}`);
+            tab.classList.toggle('is-active', href === `/#${id}` || href === `#${id}`);
           });
         }
       }

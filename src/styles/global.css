@@ -74,7 +74,7 @@ ul, ol {
   --bg-deep:     var(--ctp-crust);
   --border:      var(--ctp-surface0);
   --border-active: var(--ctp-surface1);
-  --text-muted:  var(--ctp-overlay0);
+  --text-muted:  var(--ctp-overlay1);
   --text-secondary: var(--ctp-subtext0);
   --text-primary: var(--ctp-text);
   --accent:      var(--ctp-mauve);
@@ -136,6 +136,7 @@ ul, ol {
   --ctp-flamingo: #dd7878;
 
   --bg-hover:    var(--ctp-crust);
+  --text-muted:  var(--ctp-subtext0);
 
   color-scheme: light;
 }

@@ -5,28 +5,54 @@
 ## Active Sprint
 
 ### P0 — Must do now
-- [ ] Lighthouse audit — performance, accessibility, SEO scores `[M]` #a11y
-  - [ ] Run Lighthouse on all pages (home, blog posts)
-  - [ ] Fix any flagged issues (contrast, CLS, font loading, missing meta)
-  - [ ] Target: 100 across all metrics
-- [ ] Visual review with Sam `[M]` #design
-  - [ ] Check typography scale and rhythm in browser
-  - [ ] Verify Catppuccin colors render correctly in dark and light mode
-  - [ ] Test theme toggle persistence
-  - [ ] Mobile layout pass (tabs, cards, stream, projects)
-  - [ ] Verify terminal prompts and window chrome feel right
+- [ ] DNS propagation — waiting for Hostgator to flip to 187.124.67.117 `[S]` #devops blocked: TTL 4h
+  - [ ] Verify `dig samantafluture.com +short` returns `187.124.67.117`
+  - [ ] Run certbot for SSL (`samantafluture.com` + `www`)
+  - [ ] Swap nginx config from HTTP-only to full SSL
+- [x] Lighthouse audit — performance, accessibility, SEO scores `[M]` #a11y 2026-03-20
+  - [x] Font loading: moved Google Fonts @import to <link> (eliminates render-blocking)
+  - [x] Color contrast: --text-muted bumped to overlay1 (dark) / subtext0 (light) for WCAG AA
+  - [x] Blockquote contrast fixed (text-secondary instead of text-muted)
+  - [x] SEO: canonical URLs, dynamic og:url, og:type=article for blog, twitter:card
+  - [x] Nav links use absolute paths (/#about) so they work on blog pages
+  - [x] Twemoji pinned to v14.0.2 (was @latest)
+  > Agent: manual audit — Chrome headless unavailable in WSL
+- [x] Visual review with Sam `[M]` #design 2026-03-20
+  - [x] Check typography scale and rhythm in browser
+  - [x] Verify Catppuccin colors render correctly in dark and light mode
+  - [x] Test theme toggle persistence
+  - [x] Mobile layout pass (tabs, cards, stream, projects)
+  - [x] Verify terminal prompts and window chrome feel right
 
 ### P1 — Should do this week
-- [ ] Deploy pipeline — Nginx, Docker volume, webhook `[M]` #devops
-- [ ] Subscribe CTA — connect to Buttondown or Substack `[S]` #feature
+- [ ] Blog post pages — add next/previous post navigation `[S]` #feature
 
 ### P2 — Nice to have
-- [ ] Favicon design `[S]` #design
-- [ ] Blog post pages — add next/previous post navigation `[S]` #feature
+- [ ] Favicon — custom design beyond emoji `[S]` #design
 
 ## Blocked
 
 ## Completed (recent)
+- [x] VPS setup — nginx, Docker volume, GitHub Actions auto-deploy `[M]` #devops 2026-03-20
+  - [x] nginx/samantafluture.conf added to repo
+  - [x] .github/workflows/deploy.yml — build + rsync + docker volume copy
+  - [x] Docker volume `samantafluture_web` created, mounted in infra nginx
+  - [x] HTTP-only nginx config live on VPS (SSL pending DNS)
+  - [x] Repo made public for VPS clone
+  > Agent: full deploy pipeline, first successful CI deploy
+- [x] Subscribe CTA — connected to Substack `[S]` #feature 2026-03-20
+  > Agent: all subscribe links point to samantafluture.substack.com
+- [x] Favicon — 👋 emoji SVG `[S]` #design 2026-03-20
+- [x] Auto Ads project added to portfolio `[S]` #content 2026-03-20
+  > Agent: links to github.com/samantafluture/auto-ads
+- [x] Agent Workflows project added to portfolio `[S]` #content 2026-03-20
+- [x] Content polish pass `[S]` #content 2026-03-20
+  - [x] CherryAgent repo link → github.com/samantafluture/cherryagent
+  - [x] Surpride renamed to "Etsy Store Dashboard + POD Automation"
+  - [x] saminprogress removed from projects
+  - [x] Now section: shipping → "AI skills workflow"
+  - [x] Footer: Twemoji flag SVGs, back-to-top button, coffee emoji removed
+  - [x] Title bar samantafluture.com → clickable link to #about
 - [x] Redesign v3 — terminal workshop with Catppuccin palette `[L]` #design 2026-03-20
   - [x] Catppuccin Mocha (dark) + Latte (light) token system
   - [x] Dark/light toggle with localStorage persistence + prefers-color-scheme
