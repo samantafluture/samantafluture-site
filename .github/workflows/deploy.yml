@@ -1,0 +1,75 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-samantafluture-site
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 187.124.67.117
+          username: sam
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: 8443
+          script: |
+            cd ~/apps/samantafluture-site
+            git pull origin main
+
+      - name: Rsync dist to VPS
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avz --delete
+          path: dist/
+          remote_path: ~/apps/samantafluture-site/dist/
+          remote_host: 187.124.67.117
+          remote_user: sam
+          remote_key: ${{ secrets.VPS_SSH_KEY }}
+          remote_port: 8443
+
+      - name: Copy to Docker volume and verify
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 187.124.67.117
+          username: sam
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: 8443
+          script: |
+            sudo cp -r ~/apps/samantafluture-site/dist/* /usr/share/nginx/samantafluture/
+            echo "==> Deploy complete"
+            curl -sI https://samantafluture.com | head -5
