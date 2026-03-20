@@ -26,19 +26,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="page">
 
     <!-- ================================================================
-         FILE HEADER
+         FILE HEADER — glitch animation + geometric marks
          ================================================================ -->
     <header class="header" data-section="header">
-      <hr class="rule" />
+
+      <!-- Geometric marks cluster — establishes the visual language -->
+      <div class="parallax-layer" data-speed="0.08" aria-hidden="true">
+        <div class="geo-mark geo-mark--cross" style="position: absolute; top: 20%; right: 12%;"></div>
+        <div class="geo-mark geo-mark--circle" style="position: absolute; top: 35%; right: 8%;"></div>
+        <div class="geo-mark geo-mark--square" style="position: absolute; top: 28%; right: 18%;"></div>
+        <div class="geo-mark geo-mark--bracket" style="position: absolute; top: 60%; right: 5%;">[</div>
+        <div class="geo-mark geo-mark--bracket" style="position: absolute; top: 60%; right: 2%;">]</div>
+      </div>
+
+      <!-- Signal line diagonal extending into next section -->
+      <div class="header__signal" aria-hidden="true"></div>
+
+      <div class="header__bar" aria-hidden="true"></div>
+
       <div class="reveal">
-        <h1 class="header__name">Samanta Fluture</h1>
+        <!-- The ghost — glitch fragment behind the name -->
+        <span class="header__ghost" aria-hidden="true">Samanta Fluture</span>
+
+        <!-- The name — CSS glitch animation fires once on load -->
+        <h1 class="header__name glitch" data-text="Samanta Fluture">
+          <span class="glitch__text">Samanta Fluture</span>
+        </h1>
+
         <div class="header__meta">
           <span class="header__role">Senior Frontend Lead</span>
           <span class="header__role">AI-Native Developer</span>
           <span class="header__location">Montreal, Canada</span>
         </div>
       </div>
+
       <hr class="header__rule" />
+
       <p class="header__thesis reveal">
         I build frontend systems at scale and ship
         <span class="redact" role="img" aria-label="media artist">
@@ -53,6 +76,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
          BRIEF
          ================================================================ -->
     <section class="section" data-section="brief">
+      <!-- Signal line at section edge -->
+      <div class="signal-line signal-line--h" style="position: absolute; top: 0; left: -5%; width: 110%; opacity: 0.1;" aria-hidden="true"></div>
+
       <div class="section__content">
         <span class="section__label reveal">Summary</span>
         <p class="brief__text reveal">
@@ -72,16 +98,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
     <!-- ================================================================
-         EXPERIENCE
+         EXPERIENCE — bold markers, career thread
          ================================================================ -->
     <section class="section" data-section="experience">
-      <div class="section__content">
+      <!-- Geometric mark at section boundary -->
+      <div class="geo-mark geo-mark--cross" style="position: absolute; top: -10px; left: 5%;" aria-hidden="true"></div>
+
+      <div class="section__content experience-section">
         <span class="section__label reveal">Experience</span>
+
+        <!-- Career thread line -->
+        <div class="experience-thread" aria-hidden="true"></div>
 
         <div class="experience-list reveal-stagger">
 
           <article class="experience-item reveal">
-            <span class="experience-item__number">Role 08</span>
+            <span class="experience-item__number" aria-hidden="true">08</span>
             <h2 class="experience-item__company">Turbulent</h2>
             <p class="experience-item__role">Senior Frontend Developer &mdash; Lead</p>
             <span class="experience-item__dates">Apr 2025 &ndash; Present &middot; Montreal</span>
@@ -92,7 +124,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </article>
 
           <article class="experience-item reveal">
-            <span class="experience-item__number">Role 07</span>
+            <span class="experience-item__number" aria-hidden="true">07</span>
             <h2 class="experience-item__company">Turbulent</h2>
             <p class="experience-item__role">Frontend Developer</p>
             <span class="experience-item__dates">Oct 2022 &ndash; Apr 2025 &middot; 2 yrs 7 mos &middot; Montreal</span>
@@ -103,7 +135,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </article>
 
           <article class="experience-item reveal">
-            <span class="experience-item__number">Role 06</span>
+            <span class="experience-item__number" aria-hidden="true">06</span>
             <h2 class="experience-item__company">5TW</h2>
             <p class="experience-item__role">Full Stack Developer</p>
             <span class="experience-item__dates">Oct 2017 &ndash; Nov 2022 &middot; 5 yrs 2 mos</span>
@@ -114,7 +146,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </article>
 
           <article class="experience-item reveal">
-            <span class="experience-item__number">Role 05</span>
+            <span class="experience-item__number" aria-hidden="true">05</span>
             <h2 class="experience-item__company">Arduino Workshops</h2>
             <p class="experience-item__role">C Programming &amp; Arduino Instructor</p>
             <span class="experience-item__dates">Jul 2015 &ndash; Dec 2016 &middot; 1 yr 6 mos &middot; São Paulo</span>
@@ -124,7 +156,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </article>
 
           <article class="experience-item reveal">
-            <span class="experience-item__number">Role 04</span>
+            <span class="experience-item__number" aria-hidden="true">04</span>
             <h2 class="experience-item__company">Farfetch</h2>
             <p class="experience-item__role">Technical SEO / JS Consultant</p>
             <span class="experience-item__dates">May 2015 &ndash; Dec 2015 &middot; 8 mos</span>
@@ -134,7 +166,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </article>
 
           <article class="experience-item reveal">
-            <span class="experience-item__number">Role 03</span>
+            <span class="experience-item__number" aria-hidden="true">03</span>
             <h2 class="experience-item__company">Blending Visions</h2>
             <p class="experience-item__role">Co-Founder, Creative Coder</p>
             <span class="experience-item__dates">May 2014 &ndash; May 2015 &middot; 1 yr 1 mo &middot; São Paulo</span>
@@ -144,7 +176,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </article>
 
           <article class="experience-item reveal">
-            <span class="experience-item__number">Role 02</span>
+            <span class="experience-item__number" aria-hidden="true">02</span>
             <h2 class="experience-item__company">Brainstorm #9</h2>
             <p class="experience-item__role">Freelance Copywriter / Content Specialist</p>
             <span class="experience-item__dates">Dec 2012 &ndash; Dec 2016 &middot; 4 yrs 1 mo &middot; São Paulo</span>
@@ -155,7 +187,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </article>
 
           <article class="experience-item reveal">
-            <span class="experience-item__number">Role 01</span>
+            <span class="experience-item__number" aria-hidden="true">01</span>
             <h2 class="experience-item__company">Gaia Creative</h2>
             <p class="experience-item__role">Digital Marketing Coordinator</p>
             <span class="experience-item__dates">May 2010 &ndash; Oct 2012 &middot; 2 yrs 6 mos &middot; São Paulo</span>
@@ -169,13 +201,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
     <!-- ================================================================
-         PROJECTS
+         PROJECTS — DARK SECTION with grid lines, watermarks, tech chips
          ================================================================ -->
-    <section class="section" data-section="projects">
+    <section class="section section--dark" data-section="projects">
       <div class="section__content">
         <span class="section__label reveal">Projects</span>
 
         <article class="project-card reveal">
+          <span class="project-card__watermark" aria-hidden="true">Recordoc</span>
           <span class="project-card__label">Project: Recordoc</span>
           <h2 class="project-card__name">Recordoc</h2>
           <a href="https://recordoc.app" class="project-card__url" target="_blank" rel="noopener noreferrer">
@@ -186,13 +219,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             structures, and formats across 17 templates. DB-driven job queue with
             SELECT FOR UPDATE SKIP LOCKED. Resumable uploads. API envelope pattern.
           </p>
-          <p class="project-card__stack">
+          <div class="project-card__stack">
             <span class="project-card__stack-label">Stack:</span>
-            React &middot; Vite &middot; Express &middot; Drizzle &middot; PostgreSQL &middot; Supabase &middot; Turborepo &middot; Docker
-          </p>
+            <span class="project-card__tech">React</span>
+            <span class="project-card__tech">Vite</span>
+            <span class="project-card__tech">Express</span>
+            <span class="project-card__tech">Drizzle</span>
+            <span class="project-card__tech">PostgreSQL</span>
+            <span class="project-card__tech">Supabase</span>
+            <span class="project-card__tech">Turborepo</span>
+            <span class="project-card__tech">Docker</span>
+          </div>
         </article>
 
         <article class="project-card reveal">
+          <span class="project-card__watermark" aria-hidden="true">Surpride</span>
           <span class="project-card__label">Project: Surpride</span>
           <h2 class="project-card__name">Surpride</h2>
           <p class="project-card__desc">
@@ -200,13 +241,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             email parsing, Printful webhook integration, integer-cents financial system.
             Eleven Claude Code skills replace traditional application features entirely.
           </p>
-          <p class="project-card__stack">
+          <div class="project-card__stack">
             <span class="project-card__stack-label">Stack:</span>
-            Fastify &middot; SQLite &middot; React &middot; Tailwind &middot; Docker &middot; Caddy
-          </p>
+            <span class="project-card__tech">Fastify</span>
+            <span class="project-card__tech">SQLite</span>
+            <span class="project-card__tech">React</span>
+            <span class="project-card__tech">Tailwind</span>
+            <span class="project-card__tech">Docker</span>
+            <span class="project-card__tech">Caddy</span>
+          </div>
         </article>
 
         <article class="project-card reveal">
+          <span class="project-card__watermark" aria-hidden="true">FinCherry</span>
           <span class="project-card__label">Project: FinCherry</span>
           <h2 class="project-card__name">FinCherry</h2>
           <p class="project-card__desc">
@@ -214,13 +261,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             Six bank PDF parsers, Gemini with PII stripping for auto-categorization,
             what-if scenarios. Type-safe tRPC end-to-end.
           </p>
-          <p class="project-card__stack">
+          <div class="project-card__stack">
             <span class="project-card__stack-label">Stack:</span>
-            React &middot; Vite &middot; Fastify &middot; tRPC &middot; Drizzle &middot; PostgreSQL &middot; Docker
-          </p>
+            <span class="project-card__tech">React</span>
+            <span class="project-card__tech">Vite</span>
+            <span class="project-card__tech">Fastify</span>
+            <span class="project-card__tech">tRPC</span>
+            <span class="project-card__tech">Drizzle</span>
+            <span class="project-card__tech">PostgreSQL</span>
+            <span class="project-card__tech">Docker</span>
+          </div>
         </article>
 
         <article class="project-card reveal">
+          <span class="project-card__watermark" aria-hidden="true">CherryAgent</span>
           <span class="project-card__label">Project: CherryAgent</span>
           <h2 class="project-card__name">CherryAgent</h2>
           <p class="project-card__desc">
@@ -228,66 +282,71 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             tiered model routing. Voice coding that produces GitHub PRs. Distributed task
             sync across devices. Under $5/month in AI spend on a $10/month VPS.
           </p>
-          <p class="project-card__stack">
+          <div class="project-card__stack">
             <span class="project-card__stack-label">Stack:</span>
-            Fastify &middot; PostgreSQL &middot; Redis &middot; BullMQ &middot; pnpm monorepo &middot; Docker
-          </p>
+            <span class="project-card__tech">Fastify</span>
+            <span class="project-card__tech">PostgreSQL</span>
+            <span class="project-card__tech">Redis</span>
+            <span class="project-card__tech">BullMQ</span>
+            <span class="project-card__tech">pnpm monorepo</span>
+            <span class="project-card__tech">Docker</span>
+          </div>
         </article>
 
       </div>
     </section>
 
     <!-- ================================================================
-         SKILLS
+         SKILLS — visual grid with colored domain borders
          ================================================================ -->
     <section class="section" data-section="skills">
       <div class="section__content">
         <span class="section__label reveal">Capabilities</span>
 
-        <div class="skills-grid reveal">
-          <div class="skills-domain">
+        <div class="skills-grid reveal-stagger">
+          <div class="skills-domain reveal">
             <h2 class="skills-domain__title">Languages</h2>
             <p class="skills-domain__list">
               TypeScript, JavaScript, HTML, CSS, Java, Python
             </p>
           </div>
 
-          <div class="skills-domain">
+          <div class="skills-domain reveal">
             <h2 class="skills-domain__title">Frontend</h2>
             <p class="skills-domain__list">
               React, Angular, Next.js, Storybook, SASS, Tailwind, Three.js, WebGL
             </p>
           </div>
 
-          <div class="skills-domain">
+          <div class="skills-domain reveal">
             <h2 class="skills-domain__title">Backend</h2>
             <p class="skills-domain__list">
               Node.js, Fastify, Express, Nest.js, GraphQL, tRPC, Spring
             </p>
           </div>
 
-          <div class="skills-domain">
+          <div class="skills-domain reveal">
             <h2 class="skills-domain__title">Data</h2>
             <p class="skills-domain__list">
               PostgreSQL, MongoDB, MySQL, SQLite, Redis, Drizzle ORM
             </p>
           </div>
 
-          <div class="skills-domain">
+          <div class="skills-domain reveal">
             <h2 class="skills-domain__title">Infrastructure</h2>
             <p class="skills-domain__list">
               Docker, Linux, Nginx, CI/CD, Webpack, Vite, Turborepo, Git
             </p>
           </div>
 
-          <div class="skills-domain">
+          <div class="skills-domain reveal">
             <h2 class="skills-domain__title">Hardware</h2>
             <p class="skills-domain__list">
               Arduino, sensors, interactive installations
             </p>
           </div>
 
-          <div class="skills-domain">
+          <div class="skills-domain reveal">
             <h2 class="skills-domain__title">Spoken</h2>
             <p class="skills-domain__list">
               English, Portuguese, Spanish, French
@@ -301,6 +360,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
          EDUCATION & HONORS
          ================================================================ -->
     <section class="section" data-section="appendix">
+      <!-- Geometric marks at section boundary -->
+      <div class="geo-mark geo-mark--circle" style="position: absolute; top: -6px; right: 10%;" aria-hidden="true"></div>
+      <div class="geo-mark geo-mark--square" style="position: absolute; top: 2px; right: 12%;" aria-hidden="true"></div>
+
       <div class="section__content">
         <span class="section__label reveal">Appendix</span>
 
@@ -385,9 +448,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
     <!-- ================================================================
-         CONTACT
+         CONTACT — visual weight, geometric marks return
          ================================================================ -->
     <footer class="contact" data-section="contact">
+      <!-- Geometric marks closing the visual loop from the header -->
+      <div class="contact__marks" aria-hidden="true">
+        <div class="geo-mark geo-mark--cross" style="position: static;"></div>
+        <div class="geo-mark geo-mark--circle" style="position: static;"></div>
+        <div class="geo-mark geo-mark--square" style="position: static;"></div>
+      </div>
+
       <div class="section__content">
         <span class="section__label reveal">Contact</span>
         <a href="mailto:samantafluture@gmail.com" class="contact__email reveal">

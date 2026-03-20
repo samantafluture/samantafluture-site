@@ -1,6 +1,6 @@
 /* ==========================================================================
    Global — samantafluture.com
-   Reset, custom properties, base styles.
+   Reset, custom properties, base styles, texture, animations.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -8,22 +8,28 @@
    -------------------------------------------------------------------------- */
 
 :root {
-  /* Palette — warm archival */
+  /* Palette — warm archival, expanded */
   --color-bg: #f8f5f0;
+  --color-bg-warm: #f3efe8;
   --color-text: #1a1a1a;
   --color-accent: #c23616;
+  --color-accent-glow: #e8461f;
+  --color-teal: #1a535c;
+  --color-teal-light: #2d6a73;
   --color-muted: #6b6560;
   --color-rule: #d4cfc8;
   --color-redact: #111111;
-  --color-bg-warm: #f3efe8;
+  --color-dark-bg: #141413;
+  --color-dark-text: #e8e4de;
+  --color-dark-muted: #8a857f;
 
   /* Spacing — based on 8px grid */
-  --space-xs: 0.5rem;    /* 8px */
-  --space-sm: 1rem;       /* 16px */
-  --space-md: 2rem;       /* 32px */
-  --space-lg: 4rem;       /* 64px */
-  --space-xl: 8rem;       /* 128px */
-  --space-2xl: 12rem;     /* 192px */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  --space-2xl: 12rem;
 
   /* Layout */
   --max-width: 1200px;
@@ -37,8 +43,10 @@
 
   /* Transitions */
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --duration-fast: 150ms;
   --duration-normal: 250ms;
+  --duration-slow: 500ms;
 }
 
 /* --------------------------------------------------------------------------
@@ -69,6 +77,7 @@ body {
   background-color: var(--color-bg);
   min-height: 100dvh;
   overflow-x: hidden;
+  position: relative;
 }
 
 img, picture, video, canvas, svg {
@@ -83,6 +92,24 @@ a {
 
 ul, ol {
   list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   Noise Texture Overlay
+   Adds warmth and tactility to the flat background.
+   SVG noise pattern, multiply blend, barely visible.
+   -------------------------------------------------------------------------- */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
 /* --------------------------------------------------------------------------
@@ -113,7 +140,8 @@ ul, ol {
   width: 100%;
 }
 
-.rule--accent {
+.rule--thick {
+  border-top-width: 3px;
   border-top-color: var(--color-accent);
 }
 
@@ -125,7 +153,7 @@ ul, ol {
   position: fixed;
   top: -100%;
   left: var(--gutter);
-  z-index: 1000;
+  z-index: 10000;
   padding: var(--space-xs) var(--space-sm);
   background: var(--color-accent);
   color: var(--color-bg);
@@ -147,10 +175,10 @@ ul, ol {
 
 .reveal {
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(18px);
   transition:
-    opacity 0.6s var(--ease-out),
-    transform 0.6s var(--ease-out);
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
 }
 
 .reveal.is-visible {
@@ -160,13 +188,13 @@ ul, ol {
 
 /* Stagger children */
 .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
-.reveal-stagger > .reveal:nth-child(2) { transition-delay: 60ms; }
-.reveal-stagger > .reveal:nth-child(3) { transition-delay: 120ms; }
-.reveal-stagger > .reveal:nth-child(4) { transition-delay: 180ms; }
-.reveal-stagger > .reveal:nth-child(5) { transition-delay: 240ms; }
-.reveal-stagger > .reveal:nth-child(6) { transition-delay: 300ms; }
-.reveal-stagger > .reveal:nth-child(7) { transition-delay: 360ms; }
-.reveal-stagger > .reveal:nth-child(8) { transition-delay: 420ms; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 70ms; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 140ms; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 210ms; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 280ms; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 350ms; }
+.reveal-stagger > .reveal:nth-child(7) { transition-delay: 420ms; }
+.reveal-stagger > .reveal:nth-child(8) { transition-delay: 490ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal {
@@ -181,5 +209,228 @@ ul, ol {
 
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Glitch Animation — the bold move
+   CSS-only glitch on the hero name. Fires once on load.
+   References Sam's glitch art practice.
+   -------------------------------------------------------------------------- */
+
+@keyframes glitch-1 {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-3px, 2px);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(2px, -1px);
+  }
+  40% {
+    clip-path: inset(43% 0 40% 0);
+    transform: translate(-1px, 3px);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(3px, -2px);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-2px, 1px);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-2 {
+  0% {
+    clip-path: inset(65% 0 13% 0);
+    transform: translate(3px, -1px);
+  }
+  20% {
+    clip-path: inset(15% 0 65% 0);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    clip-path: inset(72% 0 5% 0);
+    transform: translate(1px, -3px);
+  }
+  60% {
+    clip-path: inset(5% 0 78% 0);
+    transform: translate(-3px, 1px);
+  }
+  80% {
+    clip-path: inset(30% 0 35% 0);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-settle {
+  0% { opacity: 0; transform: translateX(-4px); }
+  30% { opacity: 0.6; transform: translateX(2px); }
+  50% { opacity: 0.9; transform: translateX(-1px); }
+  70% { opacity: 1; transform: translateX(1px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.glitch::before {
+  color: var(--color-accent);
+  animation: glitch-1 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 0.3s;
+}
+
+.glitch::after {
+  color: var(--color-teal);
+  animation: glitch-2 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 0.35s;
+}
+
+.glitch__text {
+  animation: glitch-settle 1s var(--ease-out) both;
+  animation-delay: 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch::before,
+  .glitch::after {
+    animation: none;
+    content: none;
+  }
+
+  .glitch__text {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Signal Lines — graphic motif
+   Thin diagonal/horizontal lines that run across sections.
+   -------------------------------------------------------------------------- */
+
+.signal-line {
+  position: absolute;
+  background: var(--color-accent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.signal-line--h {
+  height: 1px;
+  opacity: 0.25;
+}
+
+.signal-line--diagonal {
+  height: 1px;
+  transform-origin: left center;
+  transform: rotate(-3deg);
+  opacity: 0.15;
+}
+
+.signal-line--thick {
+  height: 3px;
+  opacity: 0.6;
+}
+
+/* --------------------------------------------------------------------------
+   Geometric Marks — crop marks / registration marks
+   Abstract shapes at section boundaries.
+   -------------------------------------------------------------------------- */
+
+.geo-mark {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.geo-mark--cross {
+  width: 20px;
+  height: 20px;
+}
+
+.geo-mark--cross::before,
+.geo-mark--cross::after {
+  content: '';
+  position: absolute;
+  background: var(--color-accent);
+}
+
+.geo-mark--cross::before {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+}
+
+.geo-mark--cross::after {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+}
+
+.geo-mark--circle {
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.geo-mark--square {
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--color-teal);
+  transform: rotate(45deg);
+  opacity: 0.4;
+}
+
+.geo-mark--bracket {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  color: var(--color-accent);
+  opacity: 0.12;
+  line-height: 1;
+  font-weight: 300;
+}
+
+/* --------------------------------------------------------------------------
+   Parallax layer (graphic elements move at different scroll rate)
+   -------------------------------------------------------------------------- */
+
+.parallax-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer {
+    transform: none !important;
   }
 }
