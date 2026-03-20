@@ -186,6 +186,31 @@
   user-select: none;
 }
 
+/* ---------- Blinking Cursor ---------- */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  background: var(--accent);
+  margin-left: 4px;
+  vertical-align: baseline;
+  position: relative;
+  top: 0.05em;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 /* ---------- Now Section ---------- */
 .now__heading {
   display: flex;
