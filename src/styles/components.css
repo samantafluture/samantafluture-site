@@ -189,7 +189,7 @@
 /* ---------- Blinking Cursor ---------- */
 .cursor {
   display: inline-block;
-  width: 2px;
+  width: 0.55em;
   height: 0.85em;
   background: var(--accent);
   margin-left: 4px;
