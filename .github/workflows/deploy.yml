@@ -49,7 +49,8 @@ jobs:
           port: 8443
           script: |
             cd ~/apps/samantafluture-site
-            git pull origin main
+            git fetch origin main
+            git reset --hard origin/main
 
       - name: Rsync dist to VPS
         uses: burnett01/rsync-deployments@7.0.1
