@@ -5,25 +5,34 @@
 ## Active Sprint
 
 ### P0 — Must do now
-- [x] Scaffold Astro project with pnpm `[S]` #setup 2026-03-19
-- [x] Set up CLAUDE.md `[S]` #setup 2026-03-19
-- [/] Design exploration — 2-3 creative directions `[L]` #design in-progress
-  - [ ] Write direction concepts for Sam to review
-  - [ ] Sam picks direction
-- [ ] Type system design `[M]` #design
-- [ ] Layout and scroll system `[M]` #design
+- [ ] Visual review and polish with Sam `[M]` #design
+  - [ ] Check typography scale and rhythm in browser
+  - [ ] Verify redaction interactions work on mobile
+  - [ ] Tweak spacing, colors, font sizes as needed
+- [ ] Performance and accessibility audit `[M]` #a11y
+  - [ ] Lighthouse 100 across the board
+  - [ ] Full keyboard navigation test
+  - [ ] Screen reader pass
+  - [ ] Check muted gray contrast against warm background
 
 ### P1 — Should do this week
-- [ ] Content sections — professional voice rewrite `[L]` #content
-- [ ] Interaction layer `[M]` #design
-- [ ] Performance and accessibility polish `[M]` #a11y
+- [ ] Deploy pipeline (Nginx, Docker volume, webhook) `[M]` #devops
 
 ### P2 — Nice to have
-- [ ] Deploy pipeline (Nginx, Docker volume, webhook) `[M]` #devops
+- [ ] Favicon design `[S]` #design
 
 ## Blocked
 
 ## Completed (recent)
+- [x] Build full portfolio — dossier x publication hybrid `[L]` #design 2026-03-19
+  - [x] Type system (Cormorant Garamond, Source Sans 3, IBM Plex Mono)
+  - [x] Asymmetric editorial layout with CSS custom properties
+  - [x] All content sections with professional voice rewrite
+  - [x] Scroll-driven reveals, redaction interactions, margin position indicator
+  - [x] Accessibility: skip-link, ARIA, keyboard nav, reduced-motion
+  > Agent: full build from type system through all 7 sections, all interactions, all accessibility
+- [x] Design exploration — 3 creative directions `[L]` #design 2026-03-19
+  > Agent: Publication, Dossier, Broadcast. Sam chose hybrid: Dossier structure + Publication typography + Broadcast animations
 - [x] Scaffold Astro project with pnpm `[S]` #setup 2026-03-19
 - [x] Set up CLAUDE.md and task management `[S]` #setup 2026-03-19
 
