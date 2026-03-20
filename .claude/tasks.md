@@ -25,10 +25,12 @@
   - [x] Verify terminal prompts and window chrome feel right
 
 ### P1 — Should do this week
-- [ ] Blog post pages — add next/previous post navigation `[S]` #feature
+- [x] Blog post pages — add next/previous post navigation `[S]` #feature 2026-03-20
 
 ### P2 — Nice to have
-- [ ] Favicon — custom design beyond emoji `[S]` #design
+
+## Completed (recent)
+- [x] Favicon — mauve chevron on Catppuccin base `[S]` #design 2026-03-20
 
 ## Blocked
 
