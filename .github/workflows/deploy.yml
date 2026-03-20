@@ -70,6 +70,6 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: 8443
           script: |
-            sudo cp -r ~/apps/samantafluture-site/dist/* /usr/share/nginx/samantafluture/
+            docker run --rm -v samantafluture_web:/dest -v ~/apps/samantafluture-site/dist:/src:ro alpine sh -c 'rm -rf /dest/* && cp -r /src/* /dest/'
             echo "==> Deploy complete"
             curl -sI https://samantafluture.com | head -5

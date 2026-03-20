@@ -15,7 +15,7 @@ echo "==> Uploading dist/ to VPS..."
 rsync -avz --delete -e "ssh -p $REMOTE_PORT" dist/ "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR/dist/"
 
 echo "==> Copying into Docker volume..."
-$SSH_CMD "sudo cp -r $REMOTE_DIR/dist/* $VOLUME_DIR/"
+$SSH_CMD "docker run --rm -v samantafluture_web:/dest -v $REMOTE_DIR/dist:/src:ro alpine sh -c 'rm -rf /dest/* && cp -r /src/* /dest/'"
 
 echo "==> Verifying deployment..."
 HTTP_STATUS=$(curl -so /dev/null -w "%{http_code}" https://samantafluture.com)
