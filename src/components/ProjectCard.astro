@@ -1,25 +1,29 @@
 ---
+import { ArrowRight } from '@lucide/astro';
+
 interface Props {
   name: string;
   description: string;
-  tech: string;
+  stack: string;
   url?: string;
+  repo?: string;
 }
 
-const { name, description, tech, url } = Astro.props;
+const { name, description, stack, url, repo } = Astro.props;
+const href = url || repo;
 ---
 
 <article class="project-card reveal">
   <h3 class="project-card__name">{name}</h3>
   <p class="project-card__desc">{description}</p>
-  <p class="project-card__tech">{tech}</p>
-  {url ? (
-    <a href={url} class="project-card__cta" target="_blank" rel="noopener noreferrer">
-      VIEW PROJECT <span aria-hidden="true">&rarr;</span>
+  <p class="project-card__stack">{stack}</p>
+  {href ? (
+    <a href={href} class="project-card__link" target="_blank" rel="noopener noreferrer">
+      VIEW PROJECT <ArrowRight size={14} />
       <span class="sr-only">(opens in new tab)</span>
     </a>
   ) : (
-    <span class="project-card__cta" style="color: var(--text-muted);">
+    <span class="project-card__link" style="color: var(--text-muted); cursor: default;">
       COMING SOON
     </span>
   )}

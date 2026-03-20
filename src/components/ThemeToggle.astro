@@ -1,0 +1,35 @@
+---
+---
+
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+  <span class="theme-toggle__icon" aria-hidden="true"></span>
+  <span class="theme-toggle__label"></span>
+</button>
+
+<script>
+  const toggle = document.getElementById('theme-toggle') as HTMLButtonElement;
+  const icon = toggle.querySelector('.theme-toggle__icon') as HTMLSpanElement;
+  const label = toggle.querySelector('.theme-toggle__label') as HTMLSpanElement;
+
+  function getTheme(): 'dark' | 'light' {
+    const stored = localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') return stored;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function applyTheme(theme: 'dark' | 'light') {
+    document.documentElement.setAttribute('data-theme', theme);
+    icon.textContent = theme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+    label.textContent = theme === 'dark' ? 'light' : 'dark';
+    toggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+  }
+
+  applyTheme(getTheme());
+
+  toggle.addEventListener('click', () => {
+    const current = getTheme();
+    const next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+</script>

@@ -1,0 +1,61 @@
+---
+import { FileText, Rocket, MessageCircle, Link2, ArrowRight } from '@lucide/astro';
+
+interface Props {
+  type: 'writing' | 'shipped' | 'note' | 'link';
+  title?: string;
+  date: Date;
+  project?: string;
+  excerpt?: string;
+  slug: string;
+  body?: string;
+}
+
+const { type, title, date, project, excerpt, slug, body } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+
+const typeLabels: Record<string, string> = {
+  writing: 'WRITING',
+  shipped: 'SHIPPED',
+  note: 'NOTE',
+  link: 'LINK',
+};
+
+const typeIcons: Record<string, any> = {
+  writing: FileText,
+  shipped: Rocket,
+  note: MessageCircle,
+  link: Link2,
+};
+
+const Icon = typeIcons[type];
+const hasLink = type === 'writing' && title;
+const href = hasLink ? `/blog/${slug}/` : undefined;
+const displayExcerpt = excerpt || body?.slice(0, 200);
+---
+
+<article class={`stream-entry stream-entry--${type} reveal`} data-type={type}>
+  <div class="stream-entry__meta">
+    <span class={`stream-entry__badge stream-entry__badge--${type}`}>
+      <Icon size={12} />
+      {typeLabels[type]}
+    </span>
+    {project && <span class="stream-entry__project">{project}</span>}
+    <time class="stream-entry__date" datetime={date.toISOString()}>{formattedDate}</time>
+  </div>
+
+  {title && <h3 class="stream-entry__title">{title}</h3>}
+
+  {displayExcerpt && <p class="stream-entry__excerpt">{displayExcerpt}</p>}
+
+  {hasLink && (
+    <a href={href} class="stream-entry__read">
+      READ <ArrowRight size={14} />
+    </a>
+  )}
+</article>

@@ -1,18 +1,11 @@
-/* ==========================================================================
-   Animations — samantafluture.com v2
-   Scroll reveal via IntersectionObserver.
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   Scroll Reveal
-   -------------------------------------------------------------------------- */
+/* ============================================================
+   animations.css — Scroll reveal keyframes
+   ============================================================ */
 
 .reveal {
   opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity var(--duration-slow) var(--ease-out),
-    transform var(--duration-slow) var(--ease-out);
+  transform: translateY(10px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
 }
 
 .reveal.is-visible {
@@ -20,26 +13,19 @@
   transform: translateY(0);
 }
 
-/* Stagger children */
-.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
-.reveal-stagger > .reveal:nth-child(2) { transition-delay: 60ms; }
-.reveal-stagger > .reveal:nth-child(3) { transition-delay: 120ms; }
-.reveal-stagger > .reveal:nth-child(4) { transition-delay: 180ms; }
-.reveal-stagger > .reveal:nth-child(5) { transition-delay: 240ms; }
-.reveal-stagger > .reveal:nth-child(6) { transition-delay: 300ms; }
+/* Stagger siblings */
+.reveal:nth-child(2) { transition-delay: 50ms; }
+.reveal:nth-child(3) { transition-delay: 100ms; }
+.reveal:nth-child(4) { transition-delay: 150ms; }
+.reveal:nth-child(5) { transition-delay: 200ms; }
+.reveal:nth-child(6) { transition-delay: 250ms; }
+.reveal:nth-child(7) { transition-delay: 300ms; }
+.reveal:nth-child(8) { transition-delay: 350ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-
-  .reveal-stagger > .reveal {
-    transition-delay: 0ms;
-  }
-
-  html {
-    scroll-behavior: auto;
   }
 }

@@ -1,0 +1,41 @@
+---
+import { Github, Linkedin, Mail, Send } from '@lucide/astro';
+---
+
+<div class="card about reveal">
+  <h1 class="about__greeting">Hi, I'm Samanta 👋</h1>
+  <div class="about__bio prose">
+    <p>
+      Frontend lead at Turbulent, where I run a team building React and TypeScript
+      interfaces on GraphQL. After hours I build AI-first products on a $10/month VPS —
+      an agent platform that turns voice messages into GitHub PRs, a doc generator
+      powered by Gemini, a finance dashboard that speaks three currencies.
+    </p>
+    <p>
+      Brazilian in Montreal, creative background, always mid-project. Right now I'm
+      most excited about the moment where AI stops being a feature and starts being
+      the architecture.
+    </p>
+  </div>
+  <div class="about__links">
+    <a href="https://github.com/samantafluture" class="about__link" target="_blank" rel="noopener noreferrer">
+      <Github size={15} />
+      GitHub
+    </a>
+    <span class="about__link-sep" aria-hidden="true">&middot;</span>
+    <a href="https://linkedin.com/in/samantafluture" class="about__link" target="_blank" rel="noopener noreferrer">
+      <Linkedin size={15} />
+      LinkedIn
+    </a>
+    <span class="about__link-sep" aria-hidden="true">&middot;</span>
+    <a href="mailto:samantafluture@gmail.com" class="about__link">
+      <Mail size={15} />
+      Email
+    </a>
+    <span class="about__link-sep" aria-hidden="true">&middot;</span>
+    <a href="https://samantafluture.substack.com/" class="about__link" target="_blank" rel="noopener noreferrer">
+      <Send size={15} />
+      Subscribe
+    </a>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+---
+interface Props {
+  command: string;
+  showPath?: boolean;
+}
+
+const { command, showPath = false } = Astro.props;
+---
+
+<div class="prompt" aria-hidden="true">
+  <span class="prompt__user">samanta</span>
+  {showPath && (
+    <>
+      <span class="prompt__dim"> in </span>
+      <span class="prompt__path">~/workshop</span>
+      <span class="prompt__dim"> on </span>
+      <span class="prompt__branch"> main</span>
+    </>
+  )}
+  <span class="prompt__arrow"> ❯ </span>
+  <span class="prompt__cmd">{command}</span>
+</div>

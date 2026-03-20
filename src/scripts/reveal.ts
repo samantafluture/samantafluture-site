@@ -1,9 +1,3 @@
-/**
- * Scroll-driven reveal animations.
- * Uses IntersectionObserver to add .is-visible to .reveal elements.
- * Respects prefers-reduced-motion.
- */
-
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!prefersReducedMotion) {

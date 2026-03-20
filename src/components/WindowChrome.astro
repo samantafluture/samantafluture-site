@@ -1,0 +1,63 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { PenTool, Zap, FolderOpen, Mail } from '@lucide/astro';
+
+interface Props {
+  activeTab?: 'about' | 'stream' | 'projects' | 'subscribe';
+}
+
+const { activeTab = 'about' } = Astro.props;
+---
+
+<header class="window-chrome" role="banner">
+  <div class="title-bar">
+    <div class="title-bar__dots" aria-hidden="true">
+      <span class="title-bar__dot title-bar__dot--red"></span>
+      <span class="title-bar__dot title-bar__dot--yellow"></span>
+      <span class="title-bar__dot title-bar__dot--green"></span>
+    </div>
+    <a href="#about" class="title-bar__title">samantafluture.com</a>
+    <ThemeToggle />
+  </div>
+
+  <nav class="tab-bar" aria-label="Main navigation">
+    <a href="#about" class={`tab ${activeTab === 'about' ? 'is-active' : ''}`}>
+      <PenTool size={14} />
+      about
+    </a>
+    <a href="#stream" class={`tab ${activeTab === 'stream' ? 'is-active' : ''}`}>
+      <Zap size={14} />
+      stream
+    </a>
+    <a href="#projects" class={`tab ${activeTab === 'projects' ? 'is-active' : ''}`}>
+      <FolderOpen size={14} />
+      projects
+    </a>
+    <a href="#subscribe" class={`tab ${activeTab === 'subscribe' ? 'is-active' : ''}`}>
+      <Mail size={14} />
+      subscribe
+    </a>
+  </nav>
+</header>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const sections = document.querySelectorAll('.section[id]');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          tabs.forEach((tab) => {
+            const href = tab.getAttribute('href');
+            tab.classList.toggle('is-active', href === `#${id}`);
+          });
+        }
+      }
+    },
+    { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>

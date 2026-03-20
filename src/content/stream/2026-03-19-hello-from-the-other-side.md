@@ -1,9 +1,8 @@
 ---
+type: writing
 title: "Hello from the other side"
-description: "First post on the new site. Why I rebuilt everything from scratch, again."
 date: 2026-03-19
-tags: ["personal", "dev"]
-draft: false
+excerpt: "First post on the new site. Why I rebuilt everything from scratch, again."
 ---
 
 There's something about rebuilding your personal site that feels like rearranging furniture in your apartment. You tell yourself it's about aesthetics, but really it's about control. About having one corner of the internet that's entirely yours.

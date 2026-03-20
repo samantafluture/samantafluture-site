@@ -3,14 +3,15 @@ import '../styles/typography.css';
 import '../styles/global.css';
 import '../styles/components.css';
 import '../styles/animations.css';
-import Nav from '../components/Nav.astro';
+import WindowChrome from '../components/WindowChrome.astro';
 
 interface Props {
   title: string;
   description: string;
+  activeTab?: 'about' | 'stream' | 'projects' | 'subscribe';
 }
 
-const { title, description } = Astro.props;
+const { title, description, activeTab } = Astro.props;
 ---
 
 <!doctype html>
@@ -22,22 +23,32 @@ const { title, description } = Astro.props;
     <meta name="author" content="Samanta Fluture" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://samantafluture.com" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Preload primary font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <title>{title}</title>
+
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', stored);
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+    <script defer src="https://analytics.samantafluture.com/script.js" data-website-id="1134b133-9441-4466-8596-669f808e2513"></script>
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
-    <Nav />
+    <WindowChrome activeTab={activeTab} />
     <main id="main">
       <slot />
     </main>

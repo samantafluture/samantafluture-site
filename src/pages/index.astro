@@ -1,145 +1,86 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionLabel from '../components/SectionLabel.astro';
+import TerminalPrompt from '../components/TerminalPrompt.astro';
+import AboutCard from '../components/AboutCard.astro';
+import NowSection from '../components/NowSection.astro';
+import StreamEntry from '../components/StreamEntry.astro';
+import StreamFilters from '../components/StreamFilters.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import BlogPostCard from '../components/BlogPostCard.astro';
+import SubscribeCTA from '../components/SubscribeCTA.astro';
 import Footer from '../components/Footer.astro';
 
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const recentPosts = allPosts
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+const allStream = await getCollection('stream', ({ data }) => !data.draft);
+const sortedStream = allStream.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const projects = [
-  {
-    name: 'CherryAgent',
-    description: 'AI-powered Telegram bot for personal automation. Voice messages become GitHub PRs. Tiered model routing keeps AI spend under $5/month on a $10/month VPS.',
-    tech: 'Fastify · PostgreSQL · Redis · BullMQ · Docker',
-    url: 'https://github.com/samantafluture',
-  },
-  {
-    name: 'Recordoc',
-    description: 'Record a video, get a professional document. Gemini 2.5 Flash transcribes and formats across 17 templates. DB-driven job queue with resumable uploads.',
-    tech: 'React · Vite · Express · Drizzle · PostgreSQL · Docker',
-    url: 'https://recordoc.app',
-  },
-  {
-    name: 'Surpride',
-    description: 'Full business automation for a pride merch brand. 5,000+ orders processed. Real-time email parsing, Printful webhooks, integer-cents financial system.',
-    tech: 'Fastify · SQLite · React · Tailwind · Docker',
-  },
-  {
-    name: 'FinCherry',
-    description: 'Personal finance dashboard handling 3 currencies across 5 banks. Six PDF parsers, AI auto-categorization with PII stripping, what-if scenarios.',
-    tech: 'React · Vite · Fastify · tRPC · Drizzle · PostgreSQL',
-  },
-  {
-    name: 'saminprogress',
-    description: 'Personal blog about lead dev life, built with Astro. Markdown content collections, static output, deployed to a self-hosted VPS with Docker and Nginx.',
-    tech: 'Astro · TypeScript · Markdown · Docker · Nginx',
-    url: 'https://blog.samantafluture.com',
-  },
-];
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
-  title="Samanta Fluture — Senior Frontend Lead"
-  description="Senior frontend lead and AI-native developer. React, TypeScript, GraphQL. Building production systems where AI does the heavy lifting."
+  title="Samanta Fluture — Frontend Lead & Builder"
+  description="Frontend lead at Turbulent. Building AI-first products, writing about leadership and dev life. React, TypeScript, GraphQL."
+  activeTab="about"
 >
-  <div class="page">
+  <div class="content-area">
 
-    <!-- ================================================================
-         ABOUT
-         ================================================================ -->
-    <section class="section" id="about" style="padding-top: calc(var(--space-xl) + 4rem);">
-      <SectionLabel label="About" />
-
-      <div class="light-card reveal">
-        <h1 class="section-heading section-heading--on-light" style="font-size: var(--text-h1); margin-bottom: var(--space-sm);">
-          Hi, I'm Samanta.
-        </h1>
-        <p class="section-subtext section-subtext--on-light" style="max-width: 40rem; margin-bottom: var(--space-sm);">
-          Front-end lead at Turbulent, where I run a team building React and TypeScript
-          interfaces on GraphQL. After hours I build AI-first products on a $10/month VPS:
-          an agent platform that turns voice messages into GitHub PRs, a doc generator
-          powered by Gemini, a finance dashboard that speaks three currencies. Brazilian
-          in Montreal, creative background, builder by default.
-        </p>
-        <p class="section-subtext section-subtext--on-light" style="max-width: 40rem;">
-          Right now I'm most excited about the moment where AI stops being a feature
-          and starts being the architecture — where eleven Claude Code skills replace
-          traditional app features entirely.
-        </p>
-        <div class="about-links">
-          <a href="https://github.com/samantafluture" class="about-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <span class="about-link" style="color: var(--text-muted);" aria-hidden="true">&middot;</span>
-          <a href="https://linkedin.com/in/samantafluture" class="about-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <span class="about-link" style="color: var(--text-muted);" aria-hidden="true">&middot;</span>
-          <a href="mailto:samantafluture@gmail.com" class="about-link">Email</a>
-        </div>
-      </div>
+    <!-- About -->
+    <section class="section" id="about">
+      <TerminalPrompt command="whoami" showPath />
+      <AboutCard />
     </section>
 
-    <!-- ================================================================
-         PROJECTS
-         ================================================================ -->
-    <section class="section" id="projects">
-      <SectionLabel label="Projects" />
+    <!-- Now -->
+    <section class="section" id="now">
+      <TerminalPrompt command="cat now.md" />
+      <NowSection />
+    </section>
 
-      <h2 class="section-heading reveal">Things I build.</h2>
-      <p class="section-subtext reveal">Side projects, tools, and experiments. All self-hosted, most open source.</p>
-
-      <div class="projects-grid reveal-stagger">
-        {projects.map((project) => (
-          <ProjectCard {...project} />
+    <!-- Stream -->
+    <section class="section" id="stream">
+      <TerminalPrompt command="stream --latest" />
+      <h2 class="reveal" style="margin-bottom: var(--space-lg);">Stream</h2>
+      <StreamFilters />
+      <div class="stream-list">
+        {sortedStream.map((entry, i) => (
+          <>
+            <StreamEntry
+              type={entry.data.type}
+              title={entry.data.title}
+              date={entry.data.date}
+              project={entry.data.project}
+              excerpt={entry.data.excerpt}
+              slug={entry.id}
+            />
+            {i === 3 && <SubscribeCTA />}
+          </>
         ))}
       </div>
     </section>
 
-    <!-- ================================================================
-         BLOG PREVIEW
-         ================================================================ -->
-    <section class="section" id="blog">
-      <SectionLabel label="Blog" />
-
-      <h2 class="section-heading reveal">Writing</h2>
-
-      <div class="blog-cards-grid reveal-stagger">
-        {recentPosts.map((post) => (
-          <BlogPostCard
-            title={post.data.title}
-            description={post.data.description}
-            date={post.data.date}
-            tags={post.data.tags}
-            slug={post.id}
-            substack={post.data.substack}
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <TerminalPrompt command="ls ~/projects" />
+      <h2 class="reveal" style="margin-bottom: var(--space-lg);">Projects</h2>
+      <div class="projects-grid">
+        {sortedProjects.map((project) => (
+          <ProjectCard
+            name={project.data.name}
+            description={project.data.description}
+            stack={project.data.stack}
+            url={project.data.url}
+            repo={project.data.repo}
           />
         ))}
       </div>
-
-      {recentPosts.length > 0 && (
-        <a href="/blog/" class="more-link reveal">MORE POSTS &rarr;</a>
-      )}
     </section>
 
-    <!-- ================================================================
-         CTA
-         ================================================================ -->
-    <section class="section">
-      <SectionLabel label="Connect" />
-
-      <div class="cta-card reveal">
-        <h2 class="cta-card__heading">Let's build something.</h2>
-        <a href="mailto:samantafluture@gmail.com" class="cta-button">
-          GET IN TOUCH <span aria-hidden="true">&rarr;</span>
-        </a>
-      </div>
+    <!-- Subscribe -->
+    <section class="section" id="subscribe">
+      <SubscribeCTA />
     </section>
 
-    <!-- ================================================================
-         FOOTER
-         ================================================================ -->
+    <!-- Footer -->
     <Footer />
 
   </div>

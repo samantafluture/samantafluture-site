@@ -1,0 +1,41 @@
+---
+import { FileText, Rocket, MessageCircle } from '@lucide/astro';
+---
+
+<div class="filters" role="group" aria-label="Filter stream entries">
+  <button class="filter-btn is-active" data-filter="all" aria-pressed="true">ALL</button>
+  <button class="filter-btn" data-filter="writing" aria-pressed="false">
+    <FileText size={13} />
+    WRITING
+  </button>
+  <button class="filter-btn" data-filter="shipped" aria-pressed="false">
+    <Rocket size={13} />
+    SHIPPED
+  </button>
+  <button class="filter-btn" data-filter="note" aria-pressed="false">
+    <MessageCircle size={13} />
+    NOTE
+  </button>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const entries = document.querySelectorAll('.stream-entry');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = (btn as HTMLElement).dataset.filter;
+
+      buttons.forEach((b) => {
+        b.classList.toggle('is-active', b === btn);
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+
+      entries.forEach((entry) => {
+        const type = (entry as HTMLElement).dataset.type;
+        const show = filter === 'all' || type === filter;
+        (entry as HTMLElement).style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
