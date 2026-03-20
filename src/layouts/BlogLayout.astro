@@ -2,15 +2,22 @@
 import BaseLayout from './BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import SubscribeCTA from '../components/SubscribeCTA.astro';
-import { ArrowLeft, FileText } from '@lucide/astro';
+import { ArrowLeft, ArrowRight, FileText } from '@lucide/astro';
+
+interface PostLink {
+  slug: string;
+  title: string;
+}
 
 interface Props {
   title: string;
   description: string;
   date: Date;
+  prev?: PostLink | null;
+  next?: PostLink | null;
 }
 
-const { title, description, date } = Astro.props;
+const { title, description, date, prev, next } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -45,10 +52,28 @@ const formattedDate = date.toLocaleDateString('en-US', {
       </div>
 
       <div class="blog-footer">
-        <a href="/" class="blog-back">
-          <ArrowLeft size={14} />
-          BACK TO STREAM
-        </a>
+        {(prev || next) && (
+          <nav class="post-nav" aria-label="Post navigation">
+            {prev ? (
+              <a href={`/blog/${prev.slug}/`} class="post-nav__link post-nav__link--prev">
+                <ArrowLeft size={14} />
+                <span class="post-nav__meta">
+                  <span class="post-nav__label">Previous</span>
+                  <span class="post-nav__title">{prev.title}</span>
+                </span>
+              </a>
+            ) : <span />}
+            {next ? (
+              <a href={`/blog/${next.slug}/`} class="post-nav__link post-nav__link--next">
+                <span class="post-nav__meta">
+                  <span class="post-nav__label">Next</span>
+                  <span class="post-nav__title">{next.title}</span>
+                </span>
+                <ArrowRight size={14} />
+              </a>
+            ) : <span />}
+          </nav>
+        )}
         <SubscribeCTA />
       </div>
     </div>

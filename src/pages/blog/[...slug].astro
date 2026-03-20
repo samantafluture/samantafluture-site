@@ -7,13 +7,19 @@ export async function getStaticPaths() {
     return data.type === 'writing' && !!data.title && !data.draft;
   });
 
-  return stream.map((entry) => ({
+  const sorted = stream.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+  return sorted.map((entry, i) => ({
     params: { slug: entry.id },
-    props: { entry },
+    props: {
+      entry,
+      prev: sorted[i + 1] ? { slug: sorted[i + 1].id, title: sorted[i + 1].data.title! } : null,
+      next: sorted[i - 1] ? { slug: sorted[i - 1].id, title: sorted[i - 1].data.title! } : null,
+    },
   }));
 }
 
-const { entry } = Astro.props;
+const { entry, prev, next } = Astro.props;
 const { Content } = await render(entry);
 ---
 
@@ -21,6 +27,8 @@ const { Content } = await render(entry);
   title={entry.data.title!}
   description={entry.data.excerpt || ''}
   date={entry.data.date}
+  prev={prev}
+  next={next}
 >
   <Content />
 </BlogLayout>
