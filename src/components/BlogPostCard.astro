@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  tags?: string[];
+  slug: string;
+  substack?: string;
+}
+
+const { title, description, date, tags = [], slug, substack } = Astro.props;
+
+const displayTag = tags.length > 0 ? tags[0].toUpperCase() : 'POST';
+const href = substack || `/blog/${slug}/`;
+const isExternal = !!substack;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class="blog-card reveal">
+  <div class="blog-card__meta">
+    <span class="blog-card__tag">{displayTag}</span>
+    <time class="blog-card__date" datetime={date.toISOString()}>{formattedDate}</time>
+  </div>
+  <h3 class="blog-card__title">{title}</h3>
+  <p class="blog-card__excerpt">{description}</p>
+  <a
+    href={href}
+    class="blog-card__cta"
+    {...isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+  >
+    READ MORE <span aria-hidden="true">&rarr;</span>
+    {isExternal && <span class="sr-only">(opens in new tab)</span>}
+  </a>
+</article>
