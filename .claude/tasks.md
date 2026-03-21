@@ -5,10 +5,6 @@
 ## Active Sprint
 
 ### P0 — Must do now
-- [ ] DNS propagation — waiting for Hostgator to flip to 187.124.67.117 `[S]` #devops blocked: TTL 4h
-  - [ ] Verify `dig samantafluture.com +short` returns `187.124.67.117`
-  - [ ] Run certbot for SSL (`samantafluture.com` + `www`)
-  - [ ] Swap nginx config from HTTP-only to full SSL
 
 ### P1 — Should do this week
 
@@ -17,6 +13,12 @@
 ## Blocked
 
 ## Completed (recent)
+- [x] DNS propagation + SSL — cert issued, HTTPS live `[S]` #devops 2026-03-20
+  - [x] Verified `dig samantafluture.com +short` returns `187.124.67.117`
+  - [x] Certbot cert already existed, nginx reloaded with SSL config
+  - [x] Added ACME challenge location for auto-renewal
+  > Agent: DNS had already propagated; cert existed but nginx hadn't loaded it
+- [x] Added CherryOps project to portfolio `[S]` #content 2026-03-20
 - [x] Content polish — remove pricing, blinking cursor, favicon `[S]` #content 2026-03-20
   - [x] Remove all $10/month VPS and $5/month AI spend references
   - [x] Replace 👋 emoji with blinking mauve terminal cursor
