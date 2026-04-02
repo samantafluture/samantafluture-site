@@ -1,10 +1,10 @@
 <!-- Auto-generated from Notion. Do not edit manually. -->
-<!-- Last sync: 2026-04-02T20:53:23.935Z -->
+<!-- Last sync: 2026-04-02T20:54:26.406Z -->
 <!-- Source: https://www.notion.so/83f6c83bb3a546cda0739e7f25382a9a -->
 # Project: samantafluture.com
 
-> Last synced to repo: 2026-04-02T20:53:23.935Z
-> Last agent update: 2026-04-02T20:53:00.000Z
+> Last synced to repo: 2026-04-02T20:54:26.405Z
+> Last agent update: 2026-04-02T20:54:00.000Z
 
 ## Active Sprint
 
@@ -25,6 +25,7 @@
 ## Completed (recent)
 - [x] Create a Test post #content ✅ 2026-04-02
 - [x] If a 'post' system is desired, propose a minimal content structure (e.g., a data file or a new Astro page for content) that aligns with the 'single-page' and 'not a blog' principles. ✅ 2026-04-02
+- [x] Review CLAUDE.md and project context to understand the content strategy and confirm if a 'post' system is intended or if content should be integrated into `src/pages/index.astro`. ✅ 2026-04-02
 
 ## Notes
 - Check CLAUDE.md for architectural decisions before starting work
