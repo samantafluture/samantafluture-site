@@ -1,17 +1,17 @@
 <!-- Auto-generated from Notion. Do not edit manually. -->
-<!-- Last sync: 2026-04-02T16:54:54.320Z -->
+<!-- Last sync: 2026-04-02T18:24:52.564Z -->
 <!-- Source: https://www.notion.so/83f6c83bb3a546cda0739e7f25382a9a -->
 # Project: samantafluture.com
 
-> Last synced to repo: 2026-04-02T16:54:54.320Z
-> Last agent update: 2026-04-02T16:28:00.000Z
+> Last synced to repo: 2026-04-02T18:24:52.564Z
+> Last agent update: 2026-04-02T18:22:00.000Z
 
 ## Active Sprint
 
 ### P0 — Must do now
 
 ### P1 — Should do this week
-- [ ] Create /publish skill for cross-posting to Substack #feature ⏳ wip
+- [ ] Create /publish skill for cross-posting to Substack #feature
 - [ ] Write blog post: How I connected Notion to Claude Code #content
 - [ ] Write blog post: How I built CherryKit to validate app ideas fast #content
 
