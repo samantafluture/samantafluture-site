@@ -8,14 +8,15 @@
 ### P0 — Must do now
 
 ### P1 — Should do this week
-- [ ] Create /publish skill for cross-posting to Substack #feature
-- [ ] Write blog post: How I built CherryKit to validate app ideas fast #content
+- [x] Write blog post: How I built CherryKit to validate app ideas fast #content ✅ 2026-04-03
 
 ### P2 — Nice to have
 
 ## Blocked
 
 ## Completed (recent)
+- [x] Create /substack skill + cross-post in /blogpost + VPS MCP tools #feature 2026-04-03
+  > Agent: Created standalone /substack skill (full pipeline), added Stage 7 cross-post to /blogpost, added 3 MCP tools (substack_prepare, substack_link, substack_list) to vps-mcp-server. Build passes.
 - [x] Create a Test post #content ✅ 2026-04-02
 - [x] Write blog post: How I connected Notion to Claude Code #content ✅ 2026-04-02
 
