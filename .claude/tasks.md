@@ -7,7 +7,7 @@
 
 ### P0 — Must do now
 
-- [ ] Write blog post + Substack about Sam's Brain workspace setup (Karpathy KB + David Ondrej Second Brain, MCP tools, wiki pipeline) `[M]` #content
+- [x] Write blog post + Substack about Sam's Brain workspace setup (Karpathy KB + David Ondrej Second Brain, MCP tools, wiki pipeline) `[M]` #content ✅ 2026-04-05
 ### P1 — Should do this week
 - [x] Write blog post: How I built CherryKit to validate app ideas fast #content ✅ 2026-04-03
 
