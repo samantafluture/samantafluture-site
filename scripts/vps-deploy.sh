@@ -14,7 +14,10 @@ echo "==> Pulling latest changes..."
 git fetch origin main && git reset --hard origin/main
 
 echo "==> Building site in Docker..."
+HOST_UID="$(id -u)"
+HOST_GID="$(id -g)"
 docker run --rm \
+  --user "${HOST_UID}:${HOST_GID}" \
   -v "$PROJECT_DIR":/app \
   -v "${VOLUME}:/dest" \
   -w /app \
