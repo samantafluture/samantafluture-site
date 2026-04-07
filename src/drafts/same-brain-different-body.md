@@ -10,6 +10,8 @@ You don't sketch on a workbench. You don't machine parts on a whiteboard. They'r
 
 Claude Code, Claude web, and Claude mobile run the same model. Same reasoning, same capabilities. The difference is everything around it — what tools it can reach, how it responds, what kind of thinking it invites. Most developers pick one surface and stick with it. I did too, until a pattern showed up on its own.
 
+<!-- diagram: see published version for inline SVG -->
+
 ## The gradual split
 
 I work from a desk most of the day, Claude Code open in the terminal. But I also keep Claude on my phone — thinking through ideas during walks, on transit, waiting for coffee. When I get home, I continue those mobile conversations on the web. Natural continuation.

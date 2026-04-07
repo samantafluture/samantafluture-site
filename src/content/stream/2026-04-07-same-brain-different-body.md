@@ -9,6 +9,57 @@ You don't sketch on a workbench. You don't machine parts on a whiteboard. They'r
 
 Claude Code, Claude web, and Claude mobile run the same model. Same reasoning, same capabilities. The difference is everything around it — what tools it can reach, how it responds, what kind of thinking it invites. Most developers pick one surface and stick with it. I did too, until a pattern showed up on its own.
 
+<figure class="diagram">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 120" fill="none">
+  <style>
+    .d-node { fill: var(--bg-deep); stroke: var(--border-active); stroke-width: 1; }
+    .d-node--accent { fill: var(--bg-deep); stroke: var(--accent); stroke-width: 1.5; }
+    .d-label { font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 13px; font-weight: 600; fill: var(--text-primary); }
+    .d-sub { font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: var(--text-muted); letter-spacing: 0.05em; }
+    .d-arrow { stroke: var(--border-active); stroke-width: 1.5; }
+    .d-arrow--accent { stroke: var(--accent); stroke-width: 1.5; }
+  </style>
+  <!-- Mobile -->
+  <rect class="d-node" x="4" y="28" width="100" height="44" rx="6" />
+  <text class="d-label" x="54" y="48" text-anchor="middle">Mobile</text>
+  <text class="d-sub" x="54" y="62" text-anchor="middle">on the go</text>
+  <!-- Arrow -->
+  <line class="d-arrow" x1="108" y1="50" x2="140" y2="50" />
+  <polygon fill="var(--border-active)" points="138,46 146,50 138,54" />
+  <!-- Web -->
+  <rect class="d-node" x="150" y="28" width="100" height="44" rx="6" />
+  <text class="d-label" x="200" y="48" text-anchor="middle">Web</text>
+  <text class="d-sub" x="200" y="62" text-anchor="middle">whiteboard</text>
+  <!-- Arrow -->
+  <line class="d-arrow" x1="254" y1="50" x2="286" y2="50" />
+  <polygon fill="var(--border-active)" points="284,46 292,50 284,54" />
+  <!-- Brain -->
+  <rect class="d-node--accent" x="296" y="28" width="100" height="44" rx="6" />
+  <text class="d-label" x="346" y="48" text-anchor="middle">Brain</text>
+  <text class="d-sub" x="346" y="62" text-anchor="middle">knowledge</text>
+  <!-- Arrow -->
+  <line class="d-arrow--accent" x1="400" y1="50" x2="432" y2="50" />
+  <polygon fill="var(--accent)" points="430,46 438,50 430,54" />
+  <!-- Code -->
+  <rect class="d-node--accent" x="442" y="28" width="100" height="44" rx="6" />
+  <text class="d-label" x="492" y="48" text-anchor="middle">Code</text>
+  <text class="d-sub" x="492" y="62" text-anchor="middle">workbench</text>
+  <!-- Arrow -->
+  <line class="d-arrow" x1="546" y1="50" x2="578" y2="50" />
+  <polygon fill="var(--border-active)" points="576,46 584,50 576,54" />
+  <!-- Ship -->
+  <rect class="d-node" x="588" y="28" width="100" height="44" rx="6" />
+  <text class="d-label" x="638" y="48" text-anchor="middle">Ship</text>
+  <text class="d-sub" x="638" y="62" text-anchor="middle">deploy</text>
+  <!-- Phase labels -->
+  <text class="d-sub" x="127" y="100" text-anchor="middle">DIVERGENT</text>
+  <line class="d-arrow" x1="30" y1="86" x2="224" y2="86" opacity="0.4" />
+  <text class="d-sub" x="565" y="100" text-anchor="middle">CONVERGENT</text>
+  <line class="d-arrow" x1="468" y1="86" x2="662" y2="86" opacity="0.4" />
+</svg>
+<figcaption>ideas flow from whiteboard to workbench — the brain bridges the handoff</figcaption>
+</figure>
+
 ## The gradual split
 
 I work from a desk most of the day, Claude Code open in the terminal. But I also keep Claude on my phone — thinking through ideas during walks, on transit, waiting for coffee. When I get home, I continue those mobile conversations on the web. Natural continuation.

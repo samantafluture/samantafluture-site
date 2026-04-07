@@ -151,3 +151,29 @@ h3 {
   border-radius: var(--radius-md);
   margin: 1.5em 0;
 }
+
+/* ---------- Diagrams ---------- */
+.prose .diagram {
+  margin: 2em 0;
+  padding: var(--space-lg) var(--space-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+.prose .diagram svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose .diagram figcaption {
+  margin-top: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-align: center;
+}
