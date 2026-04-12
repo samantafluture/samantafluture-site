@@ -11,6 +11,7 @@
 ### P1 — Should do this week
 - [x] Write blog post: How I built CherryKit to validate app ideas fast #content ✅ 2026-04-03
 
+- [ ] Brainstorm personal brand content strategy: define pillars, posting cadence, target audience, and content types for samantafluture.com as the public-facing professional brand. Ref: brain/library/raw/yt-why-you-must-build-a-personal-brand-2026-04-12.md `[M]` #content
 ### P2 — Nice to have
 
 ## Blocked
