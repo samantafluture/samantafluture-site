@@ -1,43 +1,45 @@
-# Astro Starter Kit: Minimal
+# samantafluture-site
+
+Professional portfolio for Samanta Fluture. Static Astro site with a typography-first, editorial direction.
+
+This repo is separate from `saminprogress`. The portfolio is public/professional; the blog is personal and more diary-like.
+
+## Stack
+
+- Astro
+- TypeScript
+- pnpm
+- Custom CSS
+
+## Requirements
+
+- Node `>=22.12.0`
+- pnpm
+
+## Commands
 
 ```sh
-pnpm create astro@latest -- --template minimal
+pnpm install
+pnpm dev
+pnpm build
+pnpm preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+  components/
+  layouts/
+  pages/
+  scripts/
+  styles/
+public/
+scripts/deploy.sh
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Notes
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- No Tailwind, no React runtime
+- Keep interactions intentional and lightweight
+- Design should stay typographic and non-template
